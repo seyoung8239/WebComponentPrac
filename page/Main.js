@@ -1,15 +1,6 @@
 import WebComponent from "../lib/WebComponent.js";
 import Card from "../components/Card.js";
-
-const m = [
-    { name: "seyoung", age: "26", role: "pm" },
-    { name: "hyun", age: "26", role: "fe" },
-    { name: "gc", age: "26", role: "fe" },
-    { name: "mw", age: "25", role: "be" },
-    { name: "th", age: "26", role: "ai" },
-    { name: "jh", age: "26", role: "data" },
-];
-
+import { memberEvent, memberStore } from "../store/memberStore.js";
 class Main extends WebComponent {
     template() {
         return `
@@ -17,9 +8,12 @@ class Main extends WebComponent {
             <div id='member-list'></div>
         `;
     }
+    setup() {
+        document.addEventListener(memberEvent, this.render);
+    }
     async mount() {
         const $memberList = await Promise.all(
-            this.state.members.map(async (m) => {
+            memberStore.state.map(async (m) => {
                 const $cardContainer = document.createElement("div");
                 const card = new Card($cardContainer, m);
                 await card.init();
@@ -30,16 +24,6 @@ class Main extends WebComponent {
         $memberList.forEach(($memberCard) => {
             $memberListContainer.appendChild($memberCard);
         });
-    }
-    async setup() {
-        let members = await new Promise((res, _) => {
-            setTimeout(() => {
-                res(JSON.stringify(m));
-            }, 0);
-        });
-        members = await JSON.parse(members);
-        console.log(members);
-        this.state.members = members;
     }
 }
 
