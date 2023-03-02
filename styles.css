@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+}
+
+header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 27px;
+    height: 80px;
+    background-color: rgb(60, 1, 1, 0.06);
+    color: rgb(0, 0, 0, 0.65);
+    box-shadow: 0 0 12px 0 #ccc;
+}
+
+nav {
+    cursor: pointer;
+}
+nav:hover {
+    color: rgb(0, 0, 0, 1);
+}
+
+#container {
+    max-width: 860px;
+    margin: auto;
+    padding-top: 20px;
+}
+
+#member-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 24px;
+    border: 1px solid gray;
+    padding: 20px 30px;
+    border-radius: 3px;
+    transition: height 2s
+}
+
+#card:hover {
+    background-color: rgb(0, 0, 0, 0.05);
+}
